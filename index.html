@@ -220,7 +220,7 @@
         <span id="chat-close" onclick="toggleChat()">✖</span>
     </div>
     <div id="chat-body">
-        <div class="message bot-msg">ආයුබෝවන්! 550 ජාතක කතා, පළමු ජාතක කතාව හෝ පංචස්කන්ධය ගැන මගෙන් ප්‍රශ්න අසන්න.</div>
+        <div class="message bot-msg">ආයුබෝවන්! බෞද්ධ දර්ශනය පිළිබඳව ඔබට ඇති ප්‍රශ්න මෙහි අසන්න.</div>
     </div>
     <div id="chat-footer">
         <input type="text" id="chat-input" placeholder="ප්‍රශ්නයක් මෙහි ලියන්න..." onkeypress="handleKeyPress(event)">
@@ -257,7 +257,6 @@
         userMsg.innerText = inputField.value;
         chatBody.appendChild(userMsg);
 
-        const originalText = inputField.value;
         inputField.value = "";
         chatBody.scrollTop = chatBody.scrollHeight;
 
@@ -266,7 +265,7 @@
             const botMsg = document.createElement('div');
             botMsg.className = 'message bot-msg';
             
-            let reply = "මෙය 550 ජාතක කතා සහ බෞද්ධ දර්ශනය ඇතුළත් වෙබ් අඩවියකි. කරුණාකර ජාතක කතා හෝ පංචස්කන්ධය පිළිබඳව අසන්න.";
+            let reply = "කරුණාකර බෞද්ධ දර්ශනය පිළිබඳව අසන්න.";
             
             if (userText.includes("1") || userText.includes("පළමු") || userText.includes("apannaka") || userText.includes("අපණ්ණක")) {
                 reply = "පළමු ජාතක කතාව වන්නේ **'අපණ්ණක ජාතකය'**යි. එයින් උගන්වනු ලබන්නේ නිවැරදි ප්‍රතිපදාව (නැණවත් මඟ) අනුගමනය කිරීමේ වැදගත්කමයි.";
