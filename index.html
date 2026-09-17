@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ඔයයි මායි - අපේම ලෝකය & ස්මාර්ට් AI බොට්</title>
+    <!-- Google Gen AI SDK එක එකතු කිරීම -->
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/genai": "https://esm.run/@google/genai"
+        }
+      }
+    </script>
     <style>
         body {
             font-family: 'Iskoola Pota', Arial, sans-serif;
@@ -114,7 +122,7 @@
             padding-top: 15px;
         }
 
-        /* AI Chatbot Widget Styles (ChatGPT / Gemini Style) */
+        /* AI Chatbot Widget Styles */
         #ai-chat-btn {
             position: fixed;
             bottom: 25px;
@@ -278,12 +286,17 @@
     </div>
 </div>
 
-<script>
+<script type="module">
+    import { GoogleGenAI } from "@google/genai";
+
+    // GoogleGenAI SDK හරහා API Key එක සම්බන්ධ කිරීම
+    const ai = new GoogleGenAI({ apiKey: "AQ.Ab8RN6JkHvRZrd_LoOEhth-5WYktrhfeTSiJdpU9rdDWof1Jhw" });
+
     let audioCtx = null;
     let isPlayingSound = false;
     let soundInterval = null;
 
-    function toggleAmbientSound() {
+    window.toggleAmbientSound = function() {
         const btn = document.getElementById('soundToggleBtn');
         if (!isPlayingSound) {
             startAmbientMusic();
@@ -330,7 +343,7 @@
         }
     }
 
-    function playClickSound() {
+    window.playClickSound = function() {
         try {
             const ctx = new (window.AudioContext || window.webkitAudioContext)();
             const osc = ctx.createOscillator();
@@ -338,6 +351,7 @@
             osc.frequency.setValueAtTime(600, ctx.currentTime);
             gain.gain.setValueAtTime(0.1, ctx.currentTime);
             gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
+            osc.connect(json = gain); // syntax fix
             osc.connect(gain);
             gain.connect(ctx.destination);
             osc.start();
@@ -345,17 +359,17 @@
         } catch(e) {}
     }
 
-    function toggleChat() {
+    window.toggleChat = function() {
         const chatBox = document.getElementById('ai-chat-box');
         chatBox.style.display = (chatBox.style.display === 'flex') ? 'none' : 'flex';
     }
 
-    function handleKeyPress(event) {
-        if (event.key === 'Enter') sendToRealAI();
+    window.handleKeyPress = function(event) {
+        if (event.key === 'Enter') window.sendToRealAI();
     }
 
-    // සැබෑ AI (Google Gemini API - gemini-2.0-flash) වෙත සම්බන්ධ වන ප්‍රධාන ක්‍රියාවලිය
-    async function sendToRealAI() {
+    // Google Gen AI SDK හරහා මැසේජ් එක යැවීම
+    window.sendToRealAI = async function() {
         const inputField = document.getElementById('chat-input');
         const chatBody = document.getElementById('chat-body');
         const userText = inputField.value.trim();
@@ -380,30 +394,19 @@
         chatBody.appendChild(typingIndicator);
         chatBody.scrollTop = chatBody.scrollHeight;
 
-        const apiKey = "AQ.Ab8RN6JkHvRZrd_LoOEhth-5WYktrhfeTSiJdpU9rdDWof1Jhw"; 
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
         try {
-            const response = await fetch(url, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    contents: [{
-                        parts: [{ text: userText }]
-                    }]
-                })
+            const response = await ai.models.generateContent({
+                model: 'gemini-2.5-flash',
+                contents: userText,
             });
 
-            const data = await response.json();
             document.getElementById('typing').remove();
 
             const botMsg = document.createElement('div');
             botMsg.className = 'message bot-msg';
 
-            if (data.candidates && data.candidates[0].content.parts[0].text) {
-                botMsg.innerText = data.candidates[0].content.parts[0].text;
+            if (response && response.text) {
+                botMsg.innerText = response.text;
             } else {
                 botMsg.innerText = "සමාවෙන්න, මට ප්‍රතිචාරයක් ලබා දීමේදී දෝෂයක් ඇති විය. කරුණාකර නැවත උත්සාහ කරන්න.";
             }
@@ -415,7 +418,7 @@
             document.getElementById('typing').remove();
             const botMsg = document.createElement('div');
             botMsg.className = 'message bot-msg';
-            botMsg.innerText = "ජාල සම්බන්ධතාවයේ දෝෂයක් පවතී. කරුණාකර නැවත උත්සාහ කරන්න.";
+            botMsg.innerText = "දෝෂයක් ඇති විය: " + error.message;
             chatBody.appendChild(botMsg);
             chatBody.scrollTop = chatBody.scrollHeight;
         }
