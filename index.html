@@ -4,14 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ඔයයි මායි - අපේම ලෝකය & ස්මාර්ට් AI බොට්</title>
-    <!-- Google Gen AI SDK එක එකතු කිරීම -->
-    <script type="importmap">
-      {
-        "imports": {
-          "@google/genai": "https://esm.run/@google/genai"
-        }
-      }
-    </script>
     <style>
         body {
             font-family: 'Iskoola Pota', Arial, sans-serif;
@@ -286,17 +278,12 @@
     </div>
 </div>
 
-<script type="module">
-    import { GoogleGenAI } from "@google/genai";
-
-    // GoogleGenAI SDK හරහා API Key එක සම්බන්ධ කිරීම
-    const ai = new GoogleGenAI({ apiKey: "AQ.Ab8RN6JkHvRZrd_LoOEhth-5WYktrhfeTSiJdpU9rdDWof1Jhw" });
-
+<script>
     let audioCtx = null;
     let isPlayingSound = false;
     let soundInterval = null;
 
-    window.toggleAmbientSound = function() {
+    function toggleAmbientSound() {
         const btn = document.getElementById('soundToggleBtn');
         if (!isPlayingSound) {
             startAmbientMusic();
@@ -343,7 +330,7 @@
         }
     }
 
-    window.playClickSound = function() {
+    function playClickSound() {
         try {
             const ctx = new (window.AudioContext || window.webkitAudioContext)();
             const osc = ctx.createOscillator();
@@ -351,7 +338,6 @@
             osc.frequency.setValueAtTime(600, ctx.currentTime);
             gain.gain.setValueAtTime(0.1, ctx.currentTime);
             gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
-            osc.connect(json = gain); // syntax fix
             osc.connect(gain);
             gain.connect(ctx.destination);
             osc.start();
@@ -359,17 +345,17 @@
         } catch(e) {}
     }
 
-    window.toggleChat = function() {
+    function toggleChat() {
         const chatBox = document.getElementById('ai-chat-box');
         chatBox.style.display = (chatBox.style.display === 'flex') ? 'none' : 'flex';
     }
 
-    window.handleKeyPress = function(event) {
-        if (event.key === 'Enter') window.sendToRealAI();
+    function handleKeyPress(event) {
+        if (event.key === 'Enter') sendToRealAI();
     }
 
-    // Google Gen AI SDK හරහා මැසේජ් එක යැවීම
-    window.sendToRealAI = async function() {
+    // නිවැරදි v1 API Endpoint එක සමඟින් fetch හරහා සම්බන්ධ වීම
+    async function sendToRealAI() {
         const inputField = document.getElementById('chat-input');
         const chatBody = document.getElementById('chat-body');
         const userText = inputField.value.trim();
@@ -377,7 +363,6 @@
         if (userText === "") return;
         playClickSound();
 
-        // User Message UI එකට එකතු කිරීම
         const userMsg = document.createElement('div');
         userMsg.className = 'message user-msg';
         userMsg.innerText = userText;
@@ -386,7 +371,6 @@
         inputField.value = "";
         chatBody.scrollTop = chatBody.scrollHeight;
 
-        // Typing Indicator පෙන්වීම
         const typingIndicator = document.createElement('div');
         typingIndicator.className = 'typing-indicator';
         typingIndicator.id = 'typing';
@@ -394,21 +378,34 @@
         chatBody.appendChild(typingIndicator);
         chatBody.scrollTop = chatBody.scrollHeight;
 
+        const apiKey = "AQ.Ab8RN6JkHvRZrd_LoOEhth-5WYktrhfeTSiJdpU9rdDWof1Jhw"; 
+        const url = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+
         try {
-            const response = await ai.models.generateContent({
-                model: 'gemini-2.5-flash',
-                contents: userText,
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    contents: [{
+                        parts: [{ text: userText }]
+                    }]
+                })
             });
 
+            const data = await response.json();
             document.getElementById('typing').remove();
 
             const botMsg = document.createElement('div');
             botMsg.className = 'message bot-msg';
 
-            if (response && response.text) {
-                botMsg.innerText = response.text;
+            if (data.candidates && data.candidates[0].content.parts[0].text) {
+                botMsg.innerText = data.candidates[0].content.parts[0].text;
+            } else if (data.error) {
+                botMsg.innerText = "දෝෂයකි: " + data.error.message;
             } else {
-                botMsg.innerText = "සමාවෙන්න, මට ප්‍රතිචාරයක් ලබා දීමේදී දෝෂයක් ඇති විය. කරුණාකර නැවත උත්සාහ කරන්න.";
+                botMsg.innerText = "සමාවෙන්න, ප්‍රතිචාරයක් ලබා ගැනීමට නොහැකි විය.";
             }
 
             chatBody.appendChild(botMsg);
@@ -418,7 +415,7 @@
             document.getElementById('typing').remove();
             const botMsg = document.createElement('div');
             botMsg.className = 'message bot-msg';
-            botMsg.innerText = "දෝෂයක් ඇති විය: " + error.message;
+            botMsg.innerText = "ජාල සම්බන්ධතාවයේ දෝෂයක් පවතී.";
             chatBody.appendChild(botMsg);
             chatBody.scrollTop = chatBody.scrollHeight;
         }
