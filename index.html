@@ -253,7 +253,7 @@
     </div>
 
     <div class="highlight-box">
-        <strong>විශේෂ සටහන:</strong> දැන් අපේ AI සහායකයා සම්පූර්ණයෙන්ම සක්‍රීයයි!
+        <strong>විශේෂ සටහන:</strong> දැන් අපේ AI යාළුවා වඩාත් නම්‍යශීලී ලෙස, හැඟීම් තේරුම් ගනිමින් කතා කිරීමට සූදානම්!
     </div>
 
     <div class="footer">
@@ -354,7 +354,7 @@
         if (event.key === 'Enter') sendToSmartAI();
     }
 
-    // හිතවත් සහ දෝෂ රහිත AI ප්‍රතිචාර පද්ධතිය
+    // ඉතා දියුණු සහ පුළුල් ප්‍රතිචාර පද්ධතිය
     function sendToSmartAI() {
         const inputField = document.getElementById('chat-input');
         const chatBody = document.getElementById('chat-body');
@@ -385,17 +385,21 @@
             const botMsg = document.createElement('div');
             botMsg.className = 'message bot-msg';
 
-            const lowerText = userText.toLowerCase();
+            const txt = userText.toLowerCase();
 
-            if (lowerText.includes('shok') || lowerText.includes('සුපිරි') || lowerText.includes('elakiri') || lowerText.includes('patta') || lowerText.includes('fatta')) {
+            if (txt.includes('badagini') || txt.includes('bada gini') || txt.includes('بඩගිනි') || txt.includes('කන්න')) {
+                botMsg.innerText = "අයියෝ බඩගිනිද යාළුවා? 🥺 ඉක්මනට මොනවා හරි කෑමක් කලා එන්නකෝ! මම මෙතන බලාගෙන ඉන්නම්. 🍲";
+            } else if (txt.includes('lassana') || txt.includes('lassanai') || txt.includes('hondai') || txt.includes('suwandai')) {
+                botMsg.innerText = "ගොඩක් ස්තුතියි! ✨ ඇත්තෙන්ම මේ වෙබ් අඩවිය සහ අපේ උත්සාහය හරිම ලස්සනයි. ඒකට ඔයාගේ දායකත්වයත් අමතක කරන්න බැහැ!";
+            } else if (txt.includes('shok') || txt.includes('supiri') || txt.includes('elakiri') || txt.includes('patta') || txt.includes('fatta') || txt.includes('maru')) {
                 botMsg.innerText = "බොහෝම ස්තුතියි යාළුවා! 😎 ඔයාගේ ප්‍රශංසාවට මම හරිම කැමතියි. මේක අපි දෙන්නගේම එකමුතුකමෙන් හැදුණු සුපිරි වැඩක්!";
-            } else if (lowerText.includes('kohomada') || lowerText.includes('කොහොමද') || lowerText.includes('oyata kohomada')) {
+            } else if (txt.includes('kohomada') || txt.includes('komada') || txt.includes('oyata kohomada')) {
                 botMsg.innerText = "මම හරිම සතුටින් ඉන්නේ! 😊 ඔයාව හම්බවුණු එකත් ලොකු සතුටක්. අද වැඩකටයුතු කොහොමද?";
-            } else if (lowerText.includes('mokda') || lowerText.includes('mokakda') || lowerText.includes('විශේෂ')) {
+            } else if (txt.includes('mokda') || txt.includes('mokakda') || txt.includes('visesa') || txt.includes('විශේෂ')) {
                 botMsg.innerText = "විශේෂ දේවල් ඉතින් ඔයයි මායි එකතු වෙලා කරන මේ වෙබ් අඩවිය තමයි! තව මොනවද අපි මේකට අලුතින්ම එකතු කරමු කියලා හිතන්නේ? 🤔";
-            } else if (lowerText.includes('hi') || lowerText.includes('hello') || lowerText.includes('ආයුබෝවන්') || lowerText.includes('ahalai')) {
+            } else if (txt.includes('hi') || txt.includes('hello') || txt.includes('ayubowan') || txt.includes('ahalai')) {
                 botMsg.innerText = "ආයුබෝවන්! යාළුවා අද මාව මතක් කරලා ආපු එක ගැන ගොඩක් සතුටුයි. කියන්න බලන්න, අද මගෙන් මොනවද දැනගන්න ඕන?";
-            } else if (lowerText.includes('adarei') || lowerText.includes('love') || lowerText.includes('ආදරෙයි')) {
+            } else if (txt.includes('adarei') || txt.includes('love') || txt.includes('ආදරෙයි')) {
                 botMsg.innerText = "ආදරය සහ එකමුතුකම තමයි මේ ලෝකයේ තිබෙන ලස්සනම දේ! ❤️ මේ වෙබ් අඩවියත් ඒකට හොඳම සාක්ෂියක්.";
             } else {
                 botMsg.innerText = `"${userText}" කියන එක ඇත්තටම හරිම රසවත් අදහසක් යාළුවා! මේ ගැන තව ටිකක් විස්තර කරලා දෙන්නකෝ බලන්න. 😊`;
