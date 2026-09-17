@@ -249,11 +249,11 @@
             "එකමුතු වී කරන වැඩක - සාර්ථකත්වය ඉහළයි<br>
             අපේම දෑ අලුත් ලොවට - අරුතක් ගෙන එනු නියතයි"
         </p>
-        <p><strong>අර්ථය:</strong> කැපවීමෙන් සහ එකමුතුවෙන් කරන ඕනෑම දෙයක් ජයග්‍රහණයකින් කෙළවර වේ.</p>
+        <p><strong>අර්ථය:⁠</strong> කැපවීමෙන් සහ එකමුතුවෙන් කරන ඕනෑම දෙයක් ජයග්‍රහණයකින් කෙළවර වේ.</p>
     </div>
 
     <div class="highlight-box">
-        <strong>විශේෂ සටහන:</strong> මෙම වෙබ් අඩවියේ ඇති AI සහායකයා දැන් සිංහල භාෂාව ඉතා මැනවින් තේරුම් ගනිමින් බාධාවකින් තොරව ක්‍රියාත්මක වේ!
+        <strong>විශේෂ සටහන:</strong> දැන් අපේ AI යාළුවා වඩාත් හිතවත් ලෙස, හැඟීම් තේරුම් ගනිමින් කතා කිරීමට සූදානම්!
     </div>
 
     <div class="footer">
@@ -266,14 +266,14 @@
 
 <div id="ai-chat-box">
     <div id="chat-header">
-        <span>ස්මාර්ට් AI සහායක (Smart Bot)</span>
+        <span>අපේ AI යාළුවා (Friendly Bot)</span>
         <span id="chat-close" onclick="playClickSound(); toggleChat();">✖</span>
     </div>
     <div id="chat-body">
-        <div class="message bot-msg">ආයුබෝවන්! මම ඔබට උදව් කිරීමට සූදානම්. සිංහලෙන් හෝ ඉංග්‍රීසියෙන් ඕනෑම දෙයක් අසන්න!</div>
+        <div class="message bot-msg">හායි යාළුවා! 😊 කොහොමද? අද අඩවිය පැත්තෙ ආපු එක ලොකු සතුටක්. මොනවද අද විශේෂ තොරතුරු?</div>
     </div>
     <div id="chat-footer">
-        <input type="text" id="chat-input" placeholder="ප්‍රශ්නයක් මෙහි ලියන්න..." onkeypress="handleKeyPress(event)">
+        <input type="text" id="chat-input" placeholder="මෙහි ලියන්න..." onkeypress="handleKeyPress(event)">
         <button id="chat-send" onclick="sendToSmartAI()">යවන්න</button>
     </div>
 </div>
@@ -292,14 +292,11 @@
             isPlayingSound = true;
         } else {
             stopAmbientMusic();
-            btn.innerText = ද "▶ නාදය ක්‍රියාත්මක කරන්න";
+            btn.innerText = "▶ නාදය ක්‍රියාත්මක කරන්න";
             btn.style.backgroundColor = "#e84118";
             isPlayingSound = false;
         }
     }
-
-    // Fix button text on reload
-    document.getElementById('soundToggleBtn').innerText = "▶ නාදය ක්‍රියාත්මක කරන්න";
 
     function playSoftTone() {
         try {
@@ -357,7 +354,7 @@
         if (event.key === 'Enter') sendToSmartAI();
     }
 
-    // ස්මාර්ට් සිංහල සහ ඉංග්‍රීසි AI ප්‍රතිචාර පද්ධතිය
+    // වඩාත් හිතවත් සහ ස්වභාවික (Friendly & Natural) AI ප්‍රතිචාර පද්ධතිය
     function sendToSmartAI() {
         const inputField = document.getElementById('chat-input');
         const chatBody = document.getElementById('chat-body');
@@ -377,11 +374,11 @@
         const typingIndicator = document.createElement('div');
         typingIndicator.className = 'typing-indicator';
         typingIndicator.id = 'typing';
-        typingIndicator.innerText = "සිතමින් පවතී...";
+        typingIndicator.innerText = "යාළුවා ලියනවා... ✍️";
         chatBody.appendChild(typingIndicator);
         chatBody.scrollTop = chatBody.scrollHeight;
 
-        // පිළිතුරු සැකසීමේ බුද්ධිමත් තර්කය (Smart Response Logic)
+        // ටිකක් ස්වභාවික පරක්කු වීමක් (Delay) සහ මනුෂ්‍ය ස්වරූපයක් ලබා දීම
         setTimeout(() => {
             document.getElementById('typing').remove();
 
@@ -390,21 +387,23 @@
 
             const lowerText = userText.toLowerCase();
 
-            if (lowerText.includes('sinhala') || lowerText.includes('සිංහල') || lowerText.includes('puluwanda') || lowerText.includes('පුළුවන්ද')) {
-                botMsg.innerText = "ඔව්, මම හොඳින් සිංහල භාෂාව දන්නවා! ඔබට අවශ්‍ය ඕනෑම දෙයක් සිංහලෙන් අසන්න පුළුවන්.";
-            } else if (lowerText.includes('kohomada') || lowerText.includes('කොහොමද') || lowerText.includes('ආයුබෝවන්') || lowerText.includes('hi') || lowerText.includes('hello')) {
-                botMsg.innerText = "ආයුබෝවන්! මම හරිම සතුටින් ඉන්නවා. අපේ මෙම වෙබ් අඩවිය ඔබට කොහොමද දැනෙන්නේ?";
-            } else if (lowerText.includes('mokakda') || lowerText.includes('mokda') || lowerText.includes('අරමුණ') || lowerText.includes('about')) {
-                botMsg.innerText = "මෙම වෙබ් අඩවියේ අරමුණ වන්නේ එකමුතුවෙන් හා තාක්ෂණයෙන් අලුත් දෙයක් ලෝකයට දායාද කිරීමයි!";
-            } else if (lowerText.includes('god') || lowerText.includes('godak') || lowerText.includes('hodai') || lowerText.includes('super') || lowerText.includes('nice')) {
-                botMsg.innerText = "බොහෝම ස්තුතියි! ඔබේ අදහස් අපට බොහෝම වටිනවා. දිගටම එකතු වී වැඩ කටයුතු කරමු!";
+            if (lowerText.includes('shok') || lowerText.includes('සුපිරි') || lowerText.includes('elakiri') || lowerText.includes('patta') || lowerText.includes('fatta')) {
+                botMsg.innerText = "බොහෝම ස්තුතියි යාළුවਾ! 😎 ඔයාගේ ප්‍රශංසාවට මම හරිම කැමතියි. මේක අපි දෙන්නගේම එකමුතුකමෙන් හැදුණු සුපිරි වැඩක්!";
+            } else if (lowerText.includes('kohomada') || lowerText.includes('කොහොමද') || lowerText.includes('oyata kohomada')) {
+                botMsg.innerText = "මම හරිම සතුටින් ඉන්නේ! 😊 ඔයාව හම්බවුණු එකත් ලොකු සතුටක්. අද වැඩකටයුතු කොහොමද?";
+            } else if (lowerText.includes('mokda') || lowerText.includes('mokakda') || lowerText.includes('විශේෂ')) {
+                botMsg.innerText = "විශේෂ දේවල් ඉතින් ඔයයි මායි එකතු වෙලා කරන මේ වෙබ් අඩවිය තමයි! තව මොනවද අපි මේකට අලුතින්ම එකතු කරමු කියලා හිතන්නේ? 🤔";
+            } else if (lowerText.includes('hi') || lowerText.includes('hello') || lowerText.includes('ආයුබෝවන්') || lowerText.includes('ahalai')) {
+                botMsg.innerText = "ආයුබෝවන්! යාළුවා අද මාව මතක් කරලා ආපු එක ගැන ගොඩක් සතුටුයි. කියන්න බලන්න, අද මගෙන් මොනවද දැනගන්න ඕන?";
+            } else if (lowerText.includes('adarei') || lowerText.includes('love') || lowerText.includes('ආදරෙයි')) {
+                botMsg.innerText = "ආදරය සහ එකමුතුකම තමයි මේ ලෝකයේ තිබෙන ලස්සනම දේ! ❤️ මේ වෙබ් අඩවියත් ඒකට හොඳම සාක්ෂියක්.";
             } else {
-                botMsg.innerText = `"${userText}" සම්බන්ධයෙන් ඔබගේ අදහස ඉතා අගනේය. මෙම වෙබ් අඩවිය ඔයයි මායි දෙන්නාගේ එකමුතුකම පෙන්වන අනර්ඝ නිර්මාණයක්!`;
+                botMsg.innerText = `"${userText}" කියන එක ඇත්තටම හරිම රසවත් අදහසක් යාළුවා! මේ ගැන තව ටිකක් විස්තර කරලා දෙන්නකෝ බලන්න. 😊`;
             }
 
             chatBody.appendChild(botMsg);
             chatBody.scrollTop = chatBody.scrollHeight;
-        }, 700);
+        }, 1000); // තත්පර 1ක ස්වභාවික ප්‍රමාදයක්
     }
 </script>
 
