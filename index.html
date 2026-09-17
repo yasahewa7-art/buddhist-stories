@@ -220,7 +220,7 @@
         <span id="chat-close" onclick="toggleChat()">✖</span>
     </div>
     <div id="chat-body">
-        <div class="message bot-msg">ආයුබෝවන්! බෞද්ධ දර්ශනය පිළිබඳව ඔබට ඇති ප්‍රශ්න මෙහි අසන්න.</div>
+        <div class="message bot-msg">ආයුබෝවන්! බෞද්ධ දර්ශනය, ජාතක කතා හෝ ධම්ම පදය පිළිබඳව ඔබට ඇති ප්‍රශ්න මෙහි අසන්න.</div>
     </div>
     <div id="chat-footer">
         <input type="text" id="chat-input" placeholder="ප්‍රශ්නයක් මෙහි ලියන්න..." onkeypress="handleKeyPress(event)">
@@ -260,21 +260,32 @@
         inputField.value = "";
         chatBody.scrollTop = chatBody.scrollHeight;
 
-        // Bot Response Logic
+        // Smart Bot Response Logic
         setTimeout(() => {
             const botMsg = document.createElement('div');
             botMsg.className = 'message bot-msg';
             
             let reply = "කරුණාකර බෞද්ධ දර්ශනය පිළිබඳව අසන්න.";
             
-            if (userText.includes("1") || userText.includes("පළමු") || userText.includes("apannaka") || userText.includes("අපණ්ණක")) {
-                reply = "පළමු ජාතක කතාව වන්නේ **'අපණ්ණක ජාතකය'**යි. එයින් උගන්වනු ලබන්නේ නිවැරදි ප්‍රතිපදාව (නැණවත් මඟ) අනුගමනය කිරීමේ වැදගත්කමයි.";
-            } else if (userText.includes("ජාතක") || userText.includes("550")) {
+            // ධම්ම පදය / පදය / ධම්මපද සම්බන්ධ ප්‍රශ්න
+            if (userText.includes("damma") || userText.includes("amma") || userText.includes("padaya") || userText.includes("පදය") || userText.includes("ගාථා") || userText.includes("gatha") || userText.includes("అప్పమ")) {
+                reply = "වෙබ් අඩවියේ සඳහන් කර ඇති 'අප්පමಾದෝ අමතපදං' යනු ධම්ම පදයේ එන අප්‍රමාදී බව නිවනට මඟ බව පෙන්වන උතුම් ධර්ම පදයකි.";
+            } 
+            // පළමු ජාතක කතාව / අපණ්ණක ජාතකය
+            else if (userText.includes("1") || userText.includes("පළමු") || userText.includes("apannaka") || userText.includes("අපණ්ණක")) {
+                reply = "පළමු ජාතක කතාව වන්නේ **'අපණ්ණක ජාතකය'**යි. එයින් උගන්වනු ලබන්නේ නිවැරදි ප්‍රතිපදාව අනුගමනය කිරීමේ වැදගත්කමයි.";
+            } 
+            // 550 ජාතක කතා සාමාන්‍ය ප්‍රශ්න
+            else if (userText.includes("jathaka") || userText.includes("ජාතක") || userText.includes("550") || userText.includes("kata")) {
                 reply = "550 ජාතක කතා යනු බෝසතාණන් වහන්සේ බුද්ධත්වයට පත්වීමට පෙර විවිධ ආත්මවල කළ පුණ්‍යකර්ම හා ලැබූ අත්දැකීම් ඇතුළත් කතා මාලාවයි.";
-            } else if (userText.includes("ස්කන්ධ") || userText.includes("පංචස්කන්ධ")) {
+            } 
+            // පංචස්කන්ධය සම්බන්ධ ප්‍රශ්න
+            else if (userText.includes("skandhaya") || userText.includes("skanda") || userText.includes("ස්කන්ධ") || userText.includes("පංචස්කන්ධ")) {
                 reply = "පංචස්කන්ධය යනු රූප, වේදනා, සංඥා, සංස්කාර සහ විඤ්ඤාණ යන ස්කන්ධ පහයි.";
-            } else if (userText.includes("ගාථා") || userText.includes("පදය")) {
-                reply = "වෙබ් අඩවියේ සඳහන් කර ඇති 'අප්පමಾದෝ අමතපදං' යනු අප්‍රමාදී බව නිවනට මඟ බව පෙන්වන උතුම් ධර්ම පදයකි.";
+            } 
+            // බුදුරජාණන් වහන්සේ ගැන
+            else if (userText.includes("buddha") || userText.includes("බුදු") || userText.includes("budun")) {
+                reply = "බුදුරජාණන් වහන්සේ ලෝකයට සාමය, කරුණාව සහ නිවන කරා යන මඟ පෙන්වා වදාළ උත්තමයාණන් වහන්සේය.";
             }
 
             botMsg.innerHTML = reply;
