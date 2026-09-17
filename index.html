@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>බෞද්ධ දර්ශනය සහ බුදුරජාණන් වහන්සේ - AI සහායක</title>
+    <title>ඔයයි මායි - අපේම ලෝකය</title>
     <style>
         body {
             font-family: 'Iskoola Pota', Arial, sans-serif;
             line-height: 1.8;
-            /* සුදු පසුබිම ඉවත් කර මෘදු සන්සුන් පසුබිම් වර්ණයක් සහ gradient එකක් යොදා ඇත */
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
-            color: #2c3e50;
+            /* මනසට ප්‍රබෝධයක් ගෙන දෙන ලස්සන වර්ණ සංකලනයක් */
+            background: linear-gradient(135deg, #fbc531 0%, #e84118 50%, #718093 100%);
+            color: #2f3640;
             margin: 0;
             padding: 20px;
             min-height: 100vh;
@@ -18,55 +18,92 @@
         .container {
             max-width: 850px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(255, 255, 255, 0.96);
             padding: 40px;
             border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            border-top: 6px solid #d35400;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-top: 6px solid #e84118;
+        }
+        .banner-img {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(45deg, #e84118, #fbc531);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2em;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            margin-bottom: 25px;
+            text-align: center;
+            padding: 0 20px;
         }
         h1 {
-            color: #7b241c;
+            color: #c23616;
             text-align: center;
-            border-bottom: 3px solid #f39c12;
-            padding-bottom: 15px;
-            margin-bottom: 25px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
         }
         h2 {
-            color: #b9770e;
-            border-left: 5px solid #b9770e;
+            color: #e1b12c;
+            border-left: 5px solid #e84118;
             padding-left: 10px;
             margin-top: 30px;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.05);
         }
         p {
-            font-size: 1.1em;
+            font-size: 1.12em;
             text-align: justify;
         }
+        .music-control-box {
+            background: #fef9e7;
+            border: 2px solid #fbc531;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 25px 0;
+            box-shadow: 0 4px 10px rgba(251, 197, 49, 0.2);
+        }
+        .music-btn {
+            background-color: #e84118;
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-size: 1.05em;
+            cursor: pointer;
+            font-family: 'Iskoola Pota', Arial, sans-serif;
+            transition: 0.3s;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+        }
+        .music-btn:hover {
+            background-color: #c23616;
+            transform: scale(1.05);
+        }
         .highlight-box {
-            background-color: #fef9e7;
-            border-left: 4px solid #f1c40f;
+            background-color: #f5f6fa;
+            border-left: 4px solid #487eb0;
             padding: 15px;
             margin: 20px 0;
             border-radius: 6px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
         .poetry-box {
-            background: linear-gradient(to right, #ebf5fb, #eaf2f8);
-            border: 2px dashed #3498db;
+            background: linear-gradient(to right, #f5f6fa, #dcdde1);
+            border: 2px dashed #487eb0;
             padding: 20px;
             border-radius: 10px;
             margin: 20px 0;
             text-align: center;
-            box-shadow: 0 3px 10px rgba(52, 152, 219, 0.1);
         }
         .poetry-box h3 {
-            color: #2980b9;
+            color: #273c75;
             margin-top: 0;
         }
         .stanza {
             font-style: italic;
             font-weight: bold;
-            color: #1b4f72;
+            color: #192a56;
             font-size: 1.25em;
             margin: 15px 0;
         }
@@ -87,12 +124,12 @@
             padding-top: 15px;
         }
 
-        /* AI Chatbot Floating Widget Styles */
+        /* AI Chatbot Widget */
         #ai-chat-btn {
             position: fixed;
             bottom: 25px;
             right: 25px;
-            background: linear-gradient(135deg, #d35400, #b9770e);
+            background: linear-gradient(135deg, #e84118, #fbc531);
             color: white;
             border: none;
             border-radius: 50px;
@@ -123,7 +160,7 @@
             overflow: hidden;
         }
         #chat-header {
-            background: linear-gradient(135deg, #7b241c, #b9770e);
+            background: linear-gradient(135deg, #e84118, #c23616);
             color: white;
             padding: 14px;
             font-weight: bold;
@@ -157,7 +194,7 @@
             font-family: 'Iskoola Pota', Arial, sans-serif;
         }
         #chat-send {
-            background: #d35400;
+            background: #e84118;
             color: white;
             border: none;
             padding: 9px 15px;
@@ -166,9 +203,6 @@
             cursor: pointer;
             font-family: 'Iskoola Pota', Arial, sans-serif;
         }
-        #chat-send:hover {
-            background: #b9770e;
-        }
         .message {
             margin-bottom: 10px;
             padding: 9px 12px;
@@ -176,65 +210,74 @@
             line-height: 1.5;
         }
         .bot-msg {
-            background: #eafaf1;
-            color: #145a32;
+            background: #f5f6fa;
+            color: #273c75;
             text-align: left;
-            border-left: 3px solid #27ae60;
+            border-left: 3px solid #487eb0;
         }
         .user-msg {
-            background: #ebf5fb;
-            color: #1b4f72;
+            background: #fef9e7;
+            color: #e1b12c;
             text-align: right;
-            border-right: 3px solid #3498db;
+            border-right: 3px solid #fbc531;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>බෞද්ධ දර්ශනය සහ බුදුරජාණන් වහන්සේ</h1>
-    <p>ලෝකවාසී සැමටම කරුණාව, මෛත්‍රිය සහ සැබෑ නිවන කරා යන මඟ පෙන්වා වදාළ <strong>බුදුරජාණන් වහන්සේගේ</strong> උතුම් ජීවිතය සහ <strong>බෞද්ධ දර්ශනයේ</strong> එන ගැඹුරු දහම් කරුණු මෙම වෙබ් අඩවියෙන් අධ්‍යයනය කළ හැක.</p>
+    <div class="banner-img">
+        ✨ ඔයයි මායි - අපේම ලෝකය ✨
+    </div>
 
-    <h2>1. ධම්ම පදය සහ උතුම් ගාථා රත්නය</h2>
-    <p>බුදුරජාණන් වහන්සේ දේශනා කළ ධර්ම ස්කන්ධය අතරින් මිනිස් ජීවිතයට මඟපෙන්වන අගනා දහම් පද රැසක් ධම්ම පදයේ අන්තර්ගත වේ.</p>
+    <h1>අපි දෙන්නගේ අලුත් නිර්මාණය</h1>
+    <p>ජීවිතයේ අපූරු මතක සටහන්, අදහස් සහ සතුට බෙදාහදා ගන්න හැදුණු විශේෂම තැනක් තමයි මේ. ඔයයි මායි එකතු වෙලා මේක තවත් ලස්සන කරමු!</p>
+
+    <!-- නාද පාලකය (Background Sound Player) -->
+    <div class="music-control-box">
+        <p style="margin: 0 0 10px 0; font-weight: bold; color: #c23616;">🎵 අපේ මියුරු නාදය (Background Melody):</p>
+        <button class="music-btn" id="soundToggleBtn" onclick="toggleAmbientSound()">▶ නාදය ක්‍රියාත්මක කරන්න</button>
+    </div>
+
+    <h2>1. අපේ අරමුණ සහ දැක්ම</h2>
+    <p>තාක්ෂණය හරහා අපේ අදහස් ලෝකයට ගෙන යන්නත්, සැමට ප්‍රයෝජනවත් වන අයුරින් අලුත් දේවල් නිර්මාණය කරන්නත් අපිට පුළුවන්.</p>
     
     <div class="poetry-box">
-        <h3>ධම්ම පද උදාහරණය:</h3>
+        <h3>අපේ මතක් කිරීම:</h3>
         <p class="stanza">
-            "අප්පමාදෝ අමතපදං - පමාදෝ මච්චුනෝ පදයං<br>
-            අප්පමත්තා න මීයಂತಿ - යේ පමත්තා යථා මතා"
+            "එකමුතු වී කරන වැඩක - සාර්ථකත්වය ඉහළයි<br>
+            අපේම දෑ අලුත් ලොවට - අරුතක් ගෙන එනු නියතයි"
         </p>
-        <p><strong>තේරුම:</strong> අප්‍රමාදී බව (සිහියෙන් යුතුව වාසය කිරීම) අමාවට (නිවනට) මඟය. ප්‍රමාදී බව මරණයට (සංසාර දුකට) මඟය. අප්‍රමාදීහු නොමීයති (නිවනට පත්වෙති). ප්‍රමාදීහු මළවුන් හා සමාන වෙති.</p>
+        <p><strong>අර්ථය:</strong> කැපවීමෙන් සහ එකමුතුවෙන් කරන ඕනෑම දෙයක් ජයග්‍රහණයකින් කෙළවර වේ.</p>
     </div>
 
     <div class="highlight-box">
-        <strong>ප්‍රධාන පරමාර්ථය:</strong> මිනිස් සතහට සදාචාරය, මෛත්‍රිය, කೃತගුණ සැලකීම සහ නිවන අවබෝධ කරගැනීමේ මඟ පෙන්වා දීමයි.
+        <strong>විශේෂ සටහන:</strong> මෙම වෙබ් අඩවිය ඔයයි මායි දෙදෙනාගේම එකතුවෙන් ඉදිරියට තවත් බොහෝ දේ එකතු කරමින් දියුණු කරමු.
     </div>
 
-    <h2>2. බෞද්ධ දර්ශනයේ මූලික ඉගැන්වීම්</h2>
-    <p>බුදුරජාණන් වහන්සේ විසින් ලෝකයට දේශනා කරන ලද ප්‍රධාන දර්ශනික ප්‍රතිපත්ති:</p>
+    <h2>2. ඉදිරියට අපි කරන වැඩ</h2>
+    <p>අපි මේ සයිට් එකට අලුතින් එකතු කරන්න බලාපොරොත්තු වන දේවල්:</p>
     <ul>
-        <li><strong>චතුරාර්ය සත්‍යය:</strong> දුක, දුකට හේතුව, දුක නැති කිරීම සහ දුක නැති කිරීමේ මඟ (ආර්ය අෂ්ඨාංගික මාර්ගය).</li>
-        <li><strong>කර්මය සහ එහි විපාක:</strong> කරන ලද කුසලාකුසල කර්ම අනුව ප්‍රතිඵල ලැබීම.</li>
-        <li><strong>පංචස්කන්ධය:</strong> රූප, වේදනා, සංඥා, සංස්කාර සහ විඤ්ඤාණ යන ස්කන්ධ පහේ එකතුව.</li>
-        <li><strong>පටිච්ච සමුප්පාදය:</strong> හේතුඵල දහම මත සියල්ල සිදුවන ආකාරය.</li>
+        <li><strong>විශේෂ නිර්මාණ:</strong> අපේම අලුත් ප්‍රොජෙක්ට් සහ අදහස් එකතු කිරීම.</li>
+        <li><strong>AI සහායකයා:</strong> ඕනෑම වෙලාවක අපිට උදව් කරන්න සූදානම් කර ඇති ස්මාර්ට් බොට්වරයා.</li>
+        <li><strong>නව අත්දැකීම්:</strong> නරඹන්නන්ට අමතක නොවන විඳීමක් ලබා දීම.</li>
     </ul>
 
     <div class="footer">
-        <p>&copy; 2026 බෞද්ධ දර්ශන අධ්‍යයන අඩවිය | සියලු හිමිකම් ඇවිරිණි.</p>
+        <p>&copy; 2026 ඔයයි මායි - සියලු හිමිකම් ඇවිරිණි.</p>
     </div>
 </div>
 
-<!-- AI Chatbot HTML Widget -->
-<button id="ai-chat-btn" onclick="playClickSound(); toggleChat();">💬 AI සහායකගෙන් අසන්න</button>
+<!-- AI Chatbot Widget -->
+<button id="ai-chat-btn" onclick="playClickSound(); toggleChat();">💬 "ඔයයි මායි" AI සහායක</button>
 
 <div id="ai-chat-box">
     <div id="chat-header">
-        <span>බෞද්ධ දර්ශන AI සහායක</span>
+        <span>අපේ AI සහායක</span>
         <span id="chat-close" onclick="playClickSound(); toggleChat();">✖</span>
     </div>
     <div id="chat-body">
-        <div class="message bot-msg">ආයුබෝවන්! බෞද්ධ දර්ශනය සහ බුදුරජාණන් වහන්සේ පිළිබඳව ඔබට ඇති ප්‍රශ්න මෙහි අසන්න.</div>
+        <div class="message bot-msg">ආයුබෝවන්! "ඔයයි මායි" වෙබ් අඩවියට සාදරයෙන් පිළිගනිමු. මගෙන් ඔබට අවශ්‍ය කුමන උදව්වක්ද ලබා දෙන්නම්?</div>
     </div>
     <div id="chat-footer">
         <input type="text" id="chat-input" placeholder="ප්‍රශ්නයක් මෙහි ලියන්න..." onkeypress="handleKeyPress(event)">
@@ -243,54 +286,80 @@
 </div>
 
 <script>
-    // Web Audio API හරහා ක්ලික් සහ මැසේජ් ශබ්ද (Sound Effects) ජෙනරේට් කිරීම
-    function playClickSound() {
+    // මියුරු නාද ජනකකය (Melody Generator)
+    let audioCtx = null;
+    let isPlayingSound = false;
+    let soundInterval = null;
+
+    function toggleAmbientSound() {
+        const btn = document.getElementById('soundToggleBtn');
+        if (!isPlayingSound) {
+            startAmbientMusic();
+            btn.innerText = "⏸ නාදය නවත්වන්න";
+            btn.style.backgroundColor = "#718093";
+            isPlayingSound = true;
+        } else {
+            stopAmbientMusic();
+            btn.innerText = "▶ නාදය ක්‍රියාත්මක කරන්න";
+            btn.style.backgroundColor = "#e84118";
+            isPlayingSound = false;
+        }
+    }
+
+    function playSoftTone() {
         try {
-            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            const oscillator = audioCtx.createOscillator();
-            const gainNode = audioCtx.createGain();
-            oscillator.type = 'sine';
-            oscillator.frequency.setValueAtTime(580, audioCtx.currentTime);
-            oscillator.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.08);
-            gainNode.gain.setValueAtTime(0.15, audioCtx.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.08);
-            oscillator.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
-            oscillator.start();
-            oscillator.stop(audioCtx.currentTime + 0.08);
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(440, audioCtx.currentTime); 
+            gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 2.5);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 2.5);
         } catch(e) {}
     }
 
-    function playMessageSound() {
+    function startAmbientMusic() {
+        playSoftTone();
+        soundInterval = setInterval(() => {
+            playSoftTone();
+        }, 3500);
+    }
+
+    function stopAmbientMusic() {
+        if (soundInterval) {
+            clearInterval(soundInterval);
+            soundInterval = null;
+        }
+    }
+
+    function playClickSound() {
         try {
-            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            const oscillator = audioCtx.createOscillator();
-            const gainNode = audioCtx.createGain();
-            oscillator.type = 'triangle';
-            oscillator.frequency.setValueAtTime(440, audioCtx.currentTime);
-            oscillator.frequency.setValueAtTime(660, audioCtx.currentTime + 0.1);
-            gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2);
-            oscillator.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
-            oscillator.start();
-            oscillator.stop(audioCtx.currentTime + 0.2);
+            const ctx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.frequency.setValueAtTime(600, ctx.currentTime);
+            gain.gain.setValueAtTime(0.1, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.1);
         } catch(e) {}
     }
 
     function toggleChat() {
         const chatBox = document.getElementById('ai-chat-box');
-        if (chatBox.style.display === 'flex') {
-            chatBox.style.display = 'none';
-        } else {
-            chatBox.style.display = 'flex';
-        }
+        chatBox.style.display = (chatBox.style.display === 'flex') ? 'none' : 'flex';
     }
 
     function handleKeyPress(event) {
-        if (event.key === 'Enter') {
-            sendMessage();
-        }
+        if (event.key === 'Enter') sendMessage();
     }
 
     function sendMessage() {
@@ -299,10 +368,8 @@
         const userText = inputField.value.trim().toLowerCase();
 
         if (userText === "") return;
-
         playClickSound();
 
-        // User Message Add
         const userMsg = document.createElement('div');
         userMsg.className = 'message user-msg';
         userMsg.innerText = inputField.value;
@@ -311,28 +378,16 @@
         inputField.value = "";
         chatBody.scrollTop = chatBody.scrollHeight;
 
-        // Smart Bot Response Logic
         setTimeout(() => {
-            playMessageSound();
             const botMsg = document.createElement('div');
             botMsg.className = 'message bot-msg';
             
-            let reply = "කරුණාකර බෞද්ධ දර්ශනය පිළිබඳව අසන්න.";
+            let reply = "ඒක හරිම අපූරු අදහසක්! අපි දෙන්නා එකතු වෙලා මේක තවත් දියුණු කරමු.";
             
-            if (userText.includes("buddha") || userText.includes("බුදු") || userText.includes("budun") || userText.includes("wahanse")) {
-                reply = "බුදුරජාණන් වහන්සේ ලෝකයට සාමය, කරුණාව සහ නිවන කරා යන මඟ පෙන්වා වදාළ උත්තමයාණන් වහන්සේය.";
-            } 
-            else if (userText.includes("damma") || userText.includes("amma") || userText.includes("padaya") || userText.includes("පදය") || userText.includes("ගාථා") || userText.includes("gatha")) {
-                reply = "වෙබ් අඩවියේ සඳහන් කර ඇති 'අප්පමಾದෝ අමතපදං' යනු ධම්ම පදයේ එන අප්‍රමාදී බව නිවනට මඟ බව පෙන්වන උතුම් ධර්ම පදයකි.";
-            } 
-            else if (userText.includes("sathya") || userText.includes("sathsaya") || userText.includes("සත්‍ය") || userText.includes("satya")) {
-                reply = "චතුරාර්ය සත්‍යය යනු දුක, දුකට හේතුව, දුක නැති කිරීම සහ දුක නැති කිරීමේ මඟ (ආර්ය අෂ්ඨාංගික මාර්ගය) වේ.";
-            }
-            else if (userText.includes("skandhaya") || userText.includes("skanda") || userText.includes("ස්කන්ධ") || userText.includes("පංචස්කන්ධ")) {
-                reply = "පංචස්කන්ධය යනු රූප, වේදනා, සංඥා, සංස්කාර සහ විඤ්ඤාණ යන ස්කන්ධ පහයි.";
-            } 
-            else if (userText.includes("karmaya") || userText.includes("karma") || userText.includes("කර්ම")) {
-                reply = "බෞද්ධ දර්ශනයට අනුව කර්මය යනු අප කරන කුසලාකුසල චේතනා අනුව ඊට අනුකූල ප්‍රතිඵල අත්වීමේ ස්වභාවයයි.";
+            if (userText.includes("oyai") || userText.includes("mamai") || userText.includes("api") || userText.includes("අපි")) {
+                reply = "ඔව්! ඔයයි මායි එකතු වෙලා තමයි මේ අඩවිය නිර්මාණය කළේ.";
+            } else if (userText.includes("sri lanka") || userText.includes("ශ්‍රී ලංකා") || userText.includes("matara")) {
+                reply = "අපි ලංකාවේ සිට මෙම අපූරු වෙබ් අඩවිය නිර්මාණය කරමින් සිටිමු!";
             }
 
             botMsg.innerHTML = reply;
