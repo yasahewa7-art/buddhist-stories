@@ -354,7 +354,7 @@
         if (event.key === 'Enter') sendToRealAI();
     }
 
-    // සැබෑ AI (Google Gemini API) වෙත සම්බන්ධ වන ප්‍රධාන ක්‍රියාවලිය
+    // සැබෑ AI (Google Gemini API - gemini-2.0-flash) වෙත සම්බන්ධ වන ප්‍රධාන ක්‍රියාවලිය
     async function sendToRealAI() {
         const inputField = document.getElementById('chat-input');
         const chatBody = document.getElementById('chat-body');
@@ -380,9 +380,8 @@
         chatBody.appendChild(typingIndicator);
         chatBody.scrollTop = chatBody.scrollHeight;
 
-        // ඔබගේ නිවැරදි API Key එක මෙහි ඇතුළත් කර ඇත
         const apiKey = "AQ.Ab8RN6LYbjjeeLoY4oS6P0pUjKjLVABBG5272sG0D3KVajW6mw"; 
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
         try {
             const response = await fetch(url, {
