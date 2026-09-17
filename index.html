@@ -122,7 +122,7 @@
             padding-top: 15px;
         }
 
-        /* AI Chatbot Widget (100% Advanced UI) */
+        /* AI Chatbot Widget Styles */
         #ai-chat-btn {
             position: fixed;
             bottom: 25px;
@@ -261,7 +261,7 @@
     </div>
 
     <div class="highlight-box">
-        <strong>විශේෂ සටහන:</strong> පහළ ඇති ස්මාර්ට් AI සහායකයා දැන් මම වගේම ඕනෑම ප්‍රශ්නයකට දක්ෂ ලෙස පිළිතුරු දෙන්න සූදානම් කර ඇත!
+        <strong>විශේෂ සටහන:</strong> පහළ ඇති ස්මාර්ට් AI සහායකයා දැන් ඔබ අසන දෙය නිවැරදිව තේරුම් ගනිමින් පිළිතුරු දීමට සූදානම් කර ඇත!
     </div>
 
     <div class="footer">
@@ -269,7 +269,7 @@
     </div>
 </div>
 
-<!-- AI Chatbot Widget (100% Advanced Bot) -->
+<!-- AI Chatbot Widget -->
 <button id="ai-chat-btn" onclick="playClickSound(); toggleChat();">💬 ස්මාර්ට් AI සහායක</button>
 
 <div id="ai-chat-box">
@@ -278,7 +278,7 @@
         <span id="chat-close" onclick="playClickSound(); toggleChat();">✖</span>
     </div>
     <div id="chat-body">
-        <div class="message bot-msg">ආයුබෝවන්! මම ඔබගේ ස්මාර්ට් සහායකයා වෙමි. ඕනෑම ප්‍රශ්නයක්, තාක්ෂණික ගැටළුවක් හෝ විමසීමක් මා වෙත යොමු කරන්න!</div>
+        <div class="message bot-msg">ආයුබෝවන්! මම ඔබගේ ස්මාර්ට් සහායකයා වෙමි. ඕනෑම ප්‍රශ්නයක් හෝ විමසීමක් මා වෙත යොමු කරන්න!</div>
     </div>
     <div id="chat-footer">
         <input type="text" id="chat-input" placeholder="ප්‍රශ්නයක් මෙහි ලියන්න..." onkeypress="handleKeyPress(event)">
@@ -287,7 +287,6 @@
 </div>
 
 <script>
-    // මියුරු නාද ජනකකය
     let audioCtx = null;
     let isPlayingSound = false;
     let soundInterval = null;
@@ -348,7 +347,7 @@
             gain.gain.setValueAtTime(0.1, ctx.currentTime);
             gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
             osc.connect(gain);
-            osc.connect(ctx.destination);
+            gain.connect(ctx.destination);
             osc.start();
             osc.stop(ctx.currentTime + 0.1);
         } catch(e) {}
@@ -363,7 +362,7 @@
         if (event.key === 'Enter') sendMessage();
     }
 
-    // 100% දියුණු කරන ලද ස්මාර්ට් බොට් මොළය (Smart AI Logic)
+    // 100% දියුණු කරන ලද නිවැරදි ස්මාර්ට් බොට් මොළය (Smart AI Brain)
     function sendMessage() {
         const inputField = document.getElementById('chat-input');
         const chatBody = document.getElementById('chat-body');
@@ -382,44 +381,45 @@
         inputField.value = "";
         chatBody.scrollTop = chatBody.scrollHeight;
 
-        // Typing Indicator එක පෙන්වීම
+        // Typing Indicator පෙන්වීම
         const typingIndicator = document.createElement('div');
         typingIndicator.className = 'typing-indicator';
         typingIndicator.id = 'typing';
-        typingIndicator.innerText = "සහායකයා කල්පනා කරමින් පවතී...";
+        typingIndicator.innerText = "සහායකයා සිතමින් පවතී...";
         chatBody.appendChild(typingIndicator);
         chatBody.scrollTop = chatBody.scrollHeight;
 
-        // ස්මාර්ට් පිළිතුරු සකස් කිරීමේ ප්‍රමාදය (Realistic AI delay)
+        // ස්මාර්ට් පිළිතුරු සකස් කිරීම
         setTimeout(() => {
             document.getElementById('typing').remove();
             
             const botMsg = document.createElement('div');
+            botMsg.className, 'message bot-msg';
             botMsg.className = 'message bot-msg';
             
-            let reply = "ඔබගේ ප්‍රශ්නය මට වැටහුණා. එය ඉතා වැදගත් අදහසක්! අපි දෙන්නා එකතු වෙලා මේක තවත් සාර්ථක කර ගනිමු.";
+            let reply = "ඔබගේ අදහස මට තේරුණා! අපි දෙන්නා එකතු වෙලා මේක තවත් ලස්සනට සහ අර්ථවත් විදිහට හදාමු.";
             
-            // විවිධ ප්‍රශ්න සඳහා ස්මාර්ට් පිළිතුරු සැපයීම
-            if (query.includes("oyai") || query.includes("mamai") || query.includes("අපි") || query.includes("api")) {
-                reply = "ඔව්! ඔයයි මායි එකතු වෙලා තමයි මේ අඩවිය නිර්මාණය කළේ. අපේ අරමුණ තාක්ෂණයෙන් ඉහළටම යෑමයි.";
+            // නිවැරදිව ප්‍රශ්න හඳුනාගැනීමේ තර්කනය (Smart Matcher)
+            if (query.includes("lassana") || query.includes("লස්සන") || query.includes("ලස්සන") || query.includes("beauty") || query.includes("beautiful")) {
+                reply = "මෙම වෙබ් අඩවිය සහ එහි ඩිසයින් එක තවත් ලස්සනට, පාට පාටින් සහ ආකර්ෂණීය විදිහට සකස් කිරීමට මම ඔබට සම්පූර්ණයෙන්ම උදව් කරන්නම්!";
+            } 
+            else if (query.includes("oyai") || query.includes("mamai") || query.includes("අපි") || query.includes("api")) {
+                reply = "ඔව්! ඔයයි මායි එකතු වෙලා තමයි මේ අඩවිය නිර්මාණය කළේ. අපේ එකමුතුව අමතක නොවන එකක් කරමු.";
             } 
             else if (query.includes("name") || query.includes("nama") || query.includes("නම")) {
-                reply = "මම ඔබගේ ස්මාර්ට් AI සහායකයා වෙමි. ඔබට ඕනෑම වෙලාවක උදව් කරන්න මම සූදානම්!";
+                reply = "මම ඔබගේ ස්මාර්ට් AI සහායකයා වෙමි. ඕනෑම තාක්ෂණික හෝ නිර්මාණාත්මක උදව්වක් සඳහා මම ඔබ සමඟ සිටිමි.";
             } 
             else if (query.includes("code") || query.includes("html") || query.includes("programming") || query.includes("වැඩසටහන්")) {
-                reply = "പ്രോഗ്രാമിං සහ වෙබ් ඩිවලොප්මන්ට් සම්බන්ධයෙන් ඔබට HTML, JavaScript හෝ වෙනත් කෝඩ් එකක් අවශ්‍ය නම් මගෙන් අසන්න!";
+                reply = "ඔබට අවශ්‍ය ඕනෑම HTML, CSS හෝ JavaScript කෝඩ් එකක් ලිවීමට සහ එය ක්‍රියාත්මක කර ගැනීමට මගෙන් අසන්න!";
             } 
-            else if (query.includes("sri lanka") || query.includes("ශ්‍රී ලංකා") || query.includes("lanka")) {
-                reply = "ශ්‍රී ලංකාව තුළ සිට තාක්ෂණික ලෝකයේ නව සන්ධිස්ථාන ස්පර්ශ කිරීමට අපි දෙදෙනාම එකතු වී සිටිමු.";
-            }
             else if (query.includes("hello") || query.includes("hi") || query.includes("ආයුබෝවන්") || query.includes("kohomada")) {
-                reply = "ආයුබෝවන්! අද ඔබට මගෙන් ඉටු විය යුතු උදව්ව කුමක්ද?";
+                reply = "ආයුබෝවන්! අද වෙබ් අඩවිය වෙනස් කරන්නේ කොහොමද? මගෙන් අවශ්‍ය උදව්ව කියන්න.";
             }
 
             botMsg.innerHTML = reply;
             chatBody.appendChild(botMsg);
             chatBody.scrollTop = chatBody.scrollHeight;
-        }, 1200);
+        }, 1000);
     }
 </script>
 
