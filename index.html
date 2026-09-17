@@ -249,11 +249,11 @@
             "එකමුතු වී කරන වැඩක - සාර්ථකත්වය ඉහළයි<br>
             අපේම දෑ අලුත් ලොවට - අරුතක් ගෙන එනු නියතයි"
         </p>
-        <p><strong>අර්ථය:⁠</strong> කැපවීමෙන් සහ එකමුතුවෙන් කරන ඕනෑම දෙයක් ජයග්‍රහණයකින් කෙළවර වේ.</p>
+        <p><strong>අර්ථය:</strong> කැපවීමෙන් සහ එකමුතුවෙන් කරන ඕනෑම දෙයක් ජයග්‍රහණයකින් කෙළවර වේ.</p>
     </div>
 
     <div class="highlight-box">
-        <strong>විශේෂ සටහන:</strong> දැන් අපේ AI යාළුවා වඩාත් හිතවත් ලෙස, හැඟීම් තේරුම් ගනිමින් කතා කිරීමට සූදානම්!
+        <strong>විශේෂ සටහන:</strong> දැන් අපේ AI සහායකයා සම්පූර්ණයෙන්ම සක්‍රීයයි!
     </div>
 
     <div class="footer">
@@ -354,7 +354,7 @@
         if (event.key === 'Enter') sendToSmartAI();
     }
 
-    // වඩාත් හිතවත් සහ ස්වභාවික (Friendly & Natural) AI ප්‍රතිචාර පද්ධතිය
+    // හිතවත් සහ දෝෂ රහිත AI ප්‍රතිචාර පද්ධතිය
     function sendToSmartAI() {
         const inputField = document.getElementById('chat-input');
         const chatBody = document.getElementById('chat-body');
@@ -378,9 +378,9 @@
         chatBody.appendChild(typingIndicator);
         chatBody.scrollTop = chatBody.scrollHeight;
 
-        // ටිකක් ස්වභාවික පරක්කු වීමක් (Delay) සහ මනුෂ්‍ය ස්වරූපයක් ලබා දීම
         setTimeout(() => {
-            document.getElementById('typing').remove();
+            const typingEl = document.getElementById('typing');
+            if (typingEl) typingEl.remove();
 
             const botMsg = document.createElement('div');
             botMsg.className = 'message bot-msg';
@@ -388,7 +388,7 @@
             const lowerText = userText.toLowerCase();
 
             if (lowerText.includes('shok') || lowerText.includes('සුපිරි') || lowerText.includes('elakiri') || lowerText.includes('patta') || lowerText.includes('fatta')) {
-                botMsg.innerText = "බොහෝම ස්තුතියි යාළුවਾ! 😎 ඔයාගේ ප්‍රශංසාවට මම හරිම කැමතියි. මේක අපි දෙන්නගේම එකමුතුකමෙන් හැදුණු සුපිරි වැඩක්!";
+                botMsg.innerText = "බොහෝම ස්තුතියි යාළුවා! 😎 ඔයාගේ ප්‍රශංසාවට මම හරිම කැමතියි. මේක අපි දෙන්නගේම එකමුතුකමෙන් හැදුණු සුපිරි වැඩක්!";
             } else if (lowerText.includes('kohomada') || lowerText.includes('කොහොමද') || lowerText.includes('oyata kohomada')) {
                 botMsg.innerText = "මම හරිම සතුටින් ඉන්නේ! 😊 ඔයාව හම්බවුණු එකත් ලොකු සතුටක්. අද වැඩකටයුතු කොහොමද?";
             } else if (lowerText.includes('mokda') || lowerText.includes('mokakda') || lowerText.includes('විශේෂ')) {
@@ -403,7 +403,7 @@
 
             chatBody.appendChild(botMsg);
             chatBody.scrollTop = chatBody.scrollHeight;
-        }, 1000); // තත්පර 1ක ස්වභාවික ප්‍රමාදයක්
+        }, 800);
     }
 </script>
 
